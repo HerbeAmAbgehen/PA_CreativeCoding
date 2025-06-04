@@ -4,11 +4,17 @@ public class CameraTargetController : MonoBehaviour
 {
     //Speed at which camera rotates
     public float CameraSpeed;
+   
+    //Controls Maximum Offset for Camera Bounce
+    public float BounceIntensity;
+
+    //Controls Speed of Camera Bounce
+    public float BounceSpeed;
 
     //Referenced Object to copy position from
     private GameObject Player;
 
-    //
+    //Variables to store Inputs
     private float RotationZ;
 
     private float RotationX;
@@ -22,7 +28,7 @@ public class CameraTargetController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Sets the objects position to that of the player object
         transform.position = Player.transform.position;
@@ -34,5 +40,16 @@ public class CameraTargetController : MonoBehaviour
         
         //Rotates Object around local axis
         transform.Rotate(RotationX, RotationY, RotationZ, Space.Self);
+
+        //Uses Sinean Function to generate Offset for Bounce Method
+        float Offset = Mathf.Sin(BounceSpeed * Time.time) * BounceIntensity;
+        CameraBounce(Offset);
+    }
+
+    //Moves Camear Up and Down on Y Axis
+    private void CameraBounce(float BounceOffset)
+    {
+        //Moves Object along Y Axis depending on given offset variable
+        transform.position = new Vector3(transform.position.x, transform.position.y + BounceOffset, transform.position.z);
     }
 }
