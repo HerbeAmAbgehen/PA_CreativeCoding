@@ -13,12 +13,19 @@ public class PlayerController : MonoBehaviour
     //Controls how much Stamina is drained while moving
     public float StaminaDrainRate;
 
+    //Controls how much HP the player has at default
+    public int maxHealth = 3;
+
     //Current amount of Stamina
     private float Stamina;
+
+    //Current HP
+    private int health;
 
     //Checks if player is game over
     private bool IsGameOver = false;
 
+    //Checks if game is paused
     private bool isPaused = false;
 
     //ReferencedObject to copy rotation from
@@ -33,6 +40,9 @@ public class PlayerController : MonoBehaviour
         CameraTarget =  GameObject.Find("CameraTarget");
         //Sets Stamina to maximum on Start
         Stamina = MaxStamina;
+        //Sets HP to default maximum at Start
+        health = maxHealth;
+
     }
 
 
@@ -56,10 +66,15 @@ public class PlayerController : MonoBehaviour
             DrainStamina();
         }
 
-        Debug.Log(Stamina);
-
         //Sets player Game Over, when they run out of stamina
         if(Stamina <= 0)
+        {
+            IsGameOver = true;
+            TogglePause();
+        }
+
+        //Sets player Game Over, when health is at 0
+        if (health <= 0)
         {
             IsGameOver = true;
             TogglePause();
@@ -124,5 +139,11 @@ public class PlayerController : MonoBehaviour
     {
         //Decreases Stamina by fixed rate
         Stamina -= StaminaDrainRate * Time.deltaTime;
+    }
+
+    public void DecreaseHP()
+    {
+        health--;
+        Debug.Log(health);
     }
 }
