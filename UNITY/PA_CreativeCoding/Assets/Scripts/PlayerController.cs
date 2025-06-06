@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     //Controls how much HP the player has at default
     public int maxHealth = 3;
 
+    public GameObject GOText;
+
     //Current amount of Stamina
     private float Stamina;
 
@@ -42,7 +44,8 @@ public class PlayerController : MonoBehaviour
         Stamina = MaxStamina;
         //Sets HP to default maximum at Start
         health = maxHealth;
-
+        //Disables GameOver text
+        GOText.SetActive(false);
     }
 
 
@@ -64,6 +67,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl))
         {
             DrainStamina();
+            
         }
 
         //Sets player Game Over, when they run out of stamina
@@ -78,6 +82,12 @@ public class PlayerController : MonoBehaviour
         {
             IsGameOver = true;
             TogglePause();
+        }
+
+        //Enables GameOver Text
+        if (IsGameOver)
+        {
+            GOText.SetActive(true);
         }
     }
 
@@ -139,6 +149,7 @@ public class PlayerController : MonoBehaviour
     {
         //Decreases Stamina by fixed rate
         Stamina -= StaminaDrainRate * Time.deltaTime;
+        Debug.Log(Stamina);
     }
 
     public void DecreaseHP()
