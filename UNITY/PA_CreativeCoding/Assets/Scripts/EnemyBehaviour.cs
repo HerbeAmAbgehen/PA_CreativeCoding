@@ -85,7 +85,7 @@ public class EnemyBehaviour : MonoBehaviour
         Vector3 PlayerDirection = player.transform.position - transform.position;
 
         //Moves object towards player
-        transform.Translate(PlayerDirection.normalized * movementSpeed * Time.deltaTime);
+        transform.Translate(PlayerDirection.normalized * -movementSpeed * Time.deltaTime);
     }
 
     //When player enters Trigger, sets behaviour to Aggro
