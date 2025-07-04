@@ -1252,7 +1252,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 125
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -3128,14 +3128,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527954688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09229649, y: 0.09229653, z: 0.7010574, w: 0.70105726}
-  m_LocalPosition: {x: 45.39, y: 2.4, z: 35.47}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 41.382, y: 0.46, z: 35.438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330585546}
   m_Father: {fileID: 1235146132}
-  m_LocalEulerAnglesHint: {x: 0, y: 15, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &1527954690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3555,8 +3555,8 @@ GameObject:
   - component: {fileID: 1730129433}
   - component: {fileID: 1730129432}
   - component: {fileID: 1730129431}
-  - component: {fileID: 1730129435}
   - component: {fileID: 1730129436}
+  - component: {fileID: 1730129435}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3648,13 +3648,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730129430}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09229649, y: 0.09229653, z: 0.7010574, w: 0.70105726}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 45.39, y: 2.4, z: 35.47}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.47851, y: 0.47851, z: 0.47851}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235146132}
-  m_LocalEulerAnglesHint: {x: 0, y: 15, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &1730129435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3681,7 +3681,7 @@ Rigidbody:
   m_GameObject: {fileID: 1730129430}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

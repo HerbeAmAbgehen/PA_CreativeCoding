@@ -27,19 +27,25 @@ public class CameraTargetController : MonoBehaviour
         Player = GameObject.Find("Player");
     }
 
+
+    private void Update()
+    {
+        //Gets Rotation from Horizontal / Vertical Mouse Input and AD / LR Arrow keys
+        RotationZ = Input.GetAxis("Mouse Y") * CameraSpeed * Time.deltaTime;
+        RotationX = Input.GetAxis("Mouse X") * CameraSpeed * Time.deltaTime;
+        RotationY = Input.GetAxis("Horizontal") * -(CameraSpeed / 2) * Time.deltaTime;
+
+        //Rotates Object around local axis
+        transform.Rotate(RotationX, RotationY, RotationZ, Space.Self);
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {
         //Sets the objects position to that of the player object
         transform.position = Player.transform.position;
 
-        //Gets Rotation from Horizontal / Vertical Mouse Input and AD / LR Arrow keys
-        RotationZ = Input.GetAxis("Mouse Y") * CameraSpeed * Time.deltaTime;
-        RotationX = Input.GetAxis("Mouse X") * CameraSpeed * Time.deltaTime;
-        RotationY = Input.GetAxis("Horizontal") * -(CameraSpeed/2) * Time.deltaTime;
         
-        //Rotates Object around local axis
-        transform.Rotate(RotationX, RotationY, RotationZ, Space.Self);
 
         //Uses Sinean Function to generate Offset for Bounce Method
         float Offset = Mathf.Sin(BounceSpeed * Time.time) * BounceIntensity;
