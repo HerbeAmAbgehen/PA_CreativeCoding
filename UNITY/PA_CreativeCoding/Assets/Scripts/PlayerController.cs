@@ -4,8 +4,18 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool InvertMouse = false;
+
     //Speed at which player moves
     public float MovementSpeed = 10;
+
+    //Speed boost
+    public float BoostStrength = 1.5f;
+
+    //Boost 
+    public float BoostDuration = 10;
+
+    public float BoostDrain = 1;
 
     //Controls maximum amount of stamina the player has
     public float MaxStamina = 100;
@@ -17,6 +27,9 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 3;
 
     public GameObject GOText;
+
+    private float DefaultSpeed;
+    private float MaxSpeed;
 
     //Current amount of Stamina
     private float Stamina;
@@ -30,22 +43,31 @@ public class PlayerController : MonoBehaviour
     //Checks if game is paused
     private bool isPaused = false;
 
+    private bool BoostUnlocked = false;
+
     //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
+
+    private PointSystem PointSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         IsGameOver = false;
-        
+
         // Sets CameraTarget as referenced Object
-        CameraTarget =  GameObject.Find("CameraTarget");
+        CameraTarget = GameObject.Find("CameraTarget");
+        PointSystem = GetComponent<PointSystem>();
         //Sets Stamina to maximum on Start
         Stamina = MaxStamina;
         //Sets HP to default maximum at Start
         health = maxHealth;
         //Disables GameOver text
         GOText.SetActive(false);
+        DefaultSpeed = MovementSpeed;
+        MaxSpeed = DefaultSpeed * BoostStrength;
+        BoostUnlocked = false;
+
     }
 
 
@@ -54,24 +76,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         //Locks player movement, if they go Game Over
         if (!IsGameOver)
         {
             GeneralMovement();
-            
+
         }
 
         //If player is moving, drains Stamina
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl))
         {
             DrainStamina();
-            
+
         }
 
         //Sets player Game Over, when they run out of stamina
-        if(Stamina <= 0)
+        if (Stamina <= 0)
         {
             IsGameOver = true;
             TogglePause();
@@ -89,6 +111,17 @@ public class PlayerController : MonoBehaviour
         {
             GOText.SetActive(true);
         }
+
+
+        //Speed boost
+        if (Input.GetKey(KeyCode.LeftShift) && BoostDuration > 0 && BoostUnlocked)
+        {
+            SpeedBoost();
+        }
+        else
+        {
+            MovementSpeed = DefaultSpeed;
+        }
     }
 
     private void LateUpdate()
@@ -99,7 +132,7 @@ public class PlayerController : MonoBehaviour
             CameraMovement();
 
         }
-        
+
     }
 
     private void GeneralMovement()
@@ -144,12 +177,12 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
-    
+
     private void DrainStamina()
     {
         //Decreases Stamina by fixed rate
         Stamina -= StaminaDrainRate * Time.deltaTime;
-        Debug.Log(Stamina);
+        //Debug.Log(Stamina);
     }
 
     public void DecreaseHP()
@@ -157,4 +190,19 @@ public class PlayerController : MonoBehaviour
         health--;
         Debug.Log(health);
     }
+
+
+    private void SpeedBoost()
+    {
+        MovementSpeed = MaxSpeed;
+        BoostDuration -= BoostDrain * Time.deltaTime;
+        Debug.Log(BoostDuration);
+        
+    }
+
+    public void UnlockSpeedBoost()
+    {
+        BoostUnlocked = true;
+    }
 }
+
