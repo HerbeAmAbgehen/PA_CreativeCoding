@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float turnStrength;
 
     private Vector3 startPosition;
+    private Vector3 startRotation;
 
     private GameObject player;
 
@@ -23,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         //Saves Start Position
         startPosition = transform.position;
+        startRotation = transform.localEulerAngles; ;
 
         player = GameObject.Find("Player");
 
@@ -66,26 +68,39 @@ public class EnemyBehaviour : MonoBehaviour
     {
         //Calculates Direction towards Start Position
         Vector3 ReturnDirection = startPosition - transform.position;
-        
-        //Moves object directly to start position
-        transform.Translate(ReturnDirection.normalized * movementSpeed * Time.deltaTime);
-        
+
+        //Gets rotation values towards Start Position
+        Quaternion LookDirection = Quaternion.LookRotation(ReturnDirection);
+
+        //Sets rotation towards Start Position
+        transform.rotation = Quaternion.Slerp(transform.rotation, LookDirection, movementSpeed / 2 * Time.deltaTime);
+
+        //Moves forward
+        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+
         //Sets Object to Start position when close enough and resets behaviour state to patrol
-        if(ReturnDirection.magnitude < 0.1f)
+        if (ReturnDirection.magnitude < 0.1f)
         {
             transform.position = startPosition;
+            transform.localEulerAngles = startRotation;
             behaviourState = 2;
         }
     }
 
-    //Follows player and collides, when in Range
+    //Follows player and collides, when player is in Range
     private void AggroBehaviour()
     {
         //Calculates Direction towards player
         Vector3 PlayerDirection = player.transform.position - transform.position;
 
-        //Moves object towards player
-        transform.Translate(PlayerDirection.normalized * movementSpeed * Time.deltaTime);
+        //Gets rotation values towards player
+        Quaternion LookDirection = Quaternion.LookRotation(PlayerDirection);
+
+        //Sets rotation towards player
+        transform.rotation = Quaternion.Slerp(transform.rotation, LookDirection, movementSpeed / 2 * Time.deltaTime);
+
+        //Moves forward
+        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }
 
     //When player enters Trigger, sets behaviour to Aggro
