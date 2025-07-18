@@ -2,17 +2,25 @@ using UnityEngine;
 
 public class WindTrap : MonoBehaviour
 {
+    public GameObject WindStart;
+
+    public GameObject WindEnd;
+
     private Rigidbody PlayerRB;
 
     private GameObject Player;
 
     public float WindStrength;
+
+    private Vector3 WindDirection;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Player = GameObject.Find("Player");
         PlayerRB = Player.GetComponent<Rigidbody>();
+
+        WindDirection = WindEnd.transform.position - WindStart.transform.position;
     }
 
     // Update is called once per frame
@@ -25,7 +33,7 @@ public class WindTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerRB.AddForce(Vector3.left * WindStrength, ForceMode.Impulse);
+            PlayerRB.AddForce(WindDirection.normalized * WindStrength, ForceMode.Force);
         }
     }
 }
