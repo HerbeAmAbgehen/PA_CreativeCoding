@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     //Current amount of Stamina
     public float Stamina;
 
+    //Current HP
+    public int health;
+
     //Controls how much HP the player has at default
     public int maxHealth = 3;
 
@@ -36,8 +39,8 @@ public class PlayerController : MonoBehaviour
 
     public bool BoostUnlocked = false;
 
-    //Current HP
-    private int health;
+
+    
 
     //Checks if player is game over
     private bool IsGameOver = false;
@@ -96,20 +99,7 @@ public class PlayerController : MonoBehaviour
         if (Stamina <= 0)
         {
             IsGameOver = true;
-            TogglePause();
-        }
-
-        //Sets player Game Over, when health is at 0
-        if (health <= 0)
-        {
-            IsGameOver = true;
-            TogglePause();
-        }
-
-        //Enables GameOver Text
-        if (IsGameOver)
-        {
-            GOText.SetActive(true);
+            GameOver();
         }
 
 
@@ -133,6 +123,14 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Beehive"))
+        {
+            RefillStamina();
+        }
     }
 
     private void GeneralMovement()
@@ -162,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         //Inverts value of bool
         isPaused = !isPaused;
@@ -187,8 +185,17 @@ public class PlayerController : MonoBehaviour
 
     public void DecreaseHP()
     {
+        PointSystem PS = GetComponent<PointSystem>();
         health--;
         Debug.Log(health);
+        if(PS.PointsCarrying >= 10)
+        {
+            PS.PointsCarrying -= 10;
+        }
+        else if(PS.PointsCarrying < 10)
+        {
+            PS.PointsCarrying = 0;
+        }
     }
 
 
@@ -204,5 +211,19 @@ public class PlayerController : MonoBehaviour
     {
         BoostUnlocked = true;
     }
+
+    private void RefillStamina()
+    {
+        Stamina = MaxStamina;
+    }
+
+    public void GameOver()
+    {
+        IsGameOver = true;
+        UIManager UIM = GameObject.Find("UIManager").GetComponent<UIManager>();
+        TogglePause();
+        UIM.GameOverPopup.SetActive(true);
+    }
+
 }
 

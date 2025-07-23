@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - FlowerTier1
   - Beehive
+  - Barrier1Trigger
+  - Barrier2Trigger
+  - Barrier3Trigger
   layers:
   - Default
   - TransparentFX
