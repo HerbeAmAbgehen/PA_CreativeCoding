@@ -4,15 +4,17 @@ public class PointSystem : MonoBehaviour
 {
     private PlayerController PlayerController;
     
-    private int PlayerPoints;
+    public int PointsCarrying;
+
+    public int PointsHive;
 
     public int DefaultPoints = 100;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerPoints = 0;
-
+        PointsCarrying = 0;
+        PointsHive = 0;
         PlayerController = GetComponent<PlayerController>();
     }
 
@@ -26,13 +28,20 @@ public class PointSystem : MonoBehaviour
     {
         if (other.CompareTag ("FlowerTier1"))
         {
-            PlayerPoints += DefaultPoints;
-            Debug.Log(PlayerPoints);
+            PointsCarrying += DefaultPoints;
+            Debug.Log(PointsCarrying);
         }
 
-        if(other.CompareTag("Beehive") && PlayerPoints >= 1000)
+        if(other.CompareTag("Beehive"))
         {
-            PlayerController.UnlockSpeedBoost();
+            PointsHive += PointsCarrying;
+            PointsCarrying = 0;
+            if(!PlayerController.BoostUnlocked && PointsCarrying >= 50)
+            {
+                PlayerController.UnlockSpeedBoost();
+            }
         }
+
+        
     }
 }

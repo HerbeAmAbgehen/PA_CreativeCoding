@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     //Controls how much Stamina is drained while moving
     public float StaminaDrainRate;
 
+    //Current amount of Stamina
+    public float Stamina;
+
     //Controls how much HP the player has at default
     public int maxHealth = 3;
 
@@ -31,8 +34,7 @@ public class PlayerController : MonoBehaviour
     private float DefaultSpeed;
     private float MaxSpeed;
 
-    //Current amount of Stamina
-    private float Stamina;
+    public bool BoostUnlocked = false;
 
     //Current HP
     private int health;
@@ -42,8 +44,6 @@ public class PlayerController : MonoBehaviour
 
     //Checks if game is paused
     private bool isPaused = false;
-
-    private bool BoostUnlocked = false;
 
     //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
