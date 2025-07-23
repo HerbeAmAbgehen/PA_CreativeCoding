@@ -815,7 +815,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -1278,7 +1278,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -1618,7 +1618,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -6646,6 +6646,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (9)
@@ -6756,7 +6760,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -7433,7 +7437,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -7721,7 +7725,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -8052,6 +8056,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (12)
@@ -8635,6 +8643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (6)
@@ -8798,6 +8810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8864,7 +8880,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -9096,6 +9112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9199,7 +9219,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -19687,6 +19707,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (4)
@@ -20208,7 +20232,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -20599,7 +20623,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -25676,6 +25700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25890,6 +25918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26021,6 +26053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26034,6 +26070,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (7)
@@ -26218,7 +26258,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -26439,6 +26479,10 @@ PrefabInstance:
     - target: {fileID: 3295977290806644204, guid: 35c118f94487d61459743eaad529c09c, type: 3}
       propertyPath: m_Name
       value: Flower_thiccc (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26666,7 +26710,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -26706,6 +26750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (11)
@@ -26816,7 +26864,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -26995,7 +27043,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -27151,7 +27199,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -27787,7 +27835,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -27862,6 +27910,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (2)
@@ -27919,6 +27971,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (10)
@@ -28096,6 +28152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28162,7 +28222,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -28321,6 +28381,10 @@ PrefabInstance:
     - target: {fileID: 3295977290806644204, guid: 35c118f94487d61459743eaad529c09c, type: 3}
       propertyPath: m_Name
       value: Flower_thiccc (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28537,7 +28601,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -28926,7 +28990,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -29084,6 +29148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29118,7 +29186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828c5b3c173e2fa4489dae8100a110c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Test Scene
+  SceneName: SampleScene
 --- !u!4 &1490146503
 Transform:
   m_ObjectHideFlags: 0
@@ -29195,7 +29263,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -29558,6 +29626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high
@@ -29743,7 +29815,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -30015,7 +30087,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -30270,6 +30342,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (5)
@@ -30380,7 +30456,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -30594,6 +30670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (8)
@@ -30988,6 +31068,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (1)
@@ -31119,6 +31203,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119748346695080003, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274944646325918206, guid: d219fd282247a3e4f95e19d010781cb7, type: 3}
       propertyPath: m_Name
       value: Flower_high (13)
@@ -31700,6 +31788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_thiccc
       objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31756,6 +31848,10 @@ PrefabInstance:
     - target: {fileID: 3295977290806644204, guid: 35c118f94487d61459743eaad529c09c, type: 3}
       propertyPath: m_Name
       value: Flower_thiccc (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641710087534065316, guid: 35c118f94487d61459743eaad529c09c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31823,7 +31919,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -31990,7 +32086,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -32770,7 +32866,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -33095,7 +33191,7 @@ MonoBehaviour:
   BoostDuration: 10
   BoostDrain: 1
   MaxStamina: 100
-  StaminaDrainRate: 0
+  StaminaDrainRate: 3
   Stamina: 0
   health: 0
   maxHealth: 3
