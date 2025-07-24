@@ -12,6 +12,8 @@ public class PointSystem : MonoBehaviour
 
     public UIManager UIManager;
 
+    private bool hasWon = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +27,7 @@ public class PointSystem : MonoBehaviour
     void Update()
     {
         ClosePopup();
+        VictoryPopUp();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,14 +36,14 @@ public class PointSystem : MonoBehaviour
         {
             PointsCarrying += DefaultPoints;
             Debug.Log(PointsCarrying);
-            other.enabled = false;
+            other.gameObject.SetActive(false);
         }
 
         if (other.CompareTag("Beehive"))
         {
             PointsHive += PointsCarrying;
             PointsCarrying = 0;
-            if (!PlayerController.BoostUnlocked && PointsHive >= 60)
+            if (!PlayerController.BoostUnlocked && PointsHive >= 55)
             {
                 UIManager.BuffPopup.SetActive(true);
                 PlayerController.TogglePause();
@@ -55,6 +58,17 @@ public class PointSystem : MonoBehaviour
             PlayerController.UnlockSpeedBoost();
             PlayerController.TogglePause();
             UIManager.BuffPopup.SetActive(false);
+            UIManager.Boost.SetActive(true);
+        }
+    }
+
+    private void VictoryPopUp()
+    {
+        if(PointsHive >= 100 && !hasWon)
+        {
+            hasWon = true;
+            PlayerController.TogglePause();
+            UIManager.VictoryPopUp.SetActive(true);
         }
     }
 }

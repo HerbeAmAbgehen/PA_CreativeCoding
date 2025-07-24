@@ -9,6 +9,8 @@ public class SceneChange : MonoBehaviour
    
     public void SceneLoad()
     {
+        PlayerController PC = GameObject.Find("Player").GetComponent<PlayerController>();
+        PC.ResetGameOver();
         SceneManager.LoadScene(SceneName);
     }
 }

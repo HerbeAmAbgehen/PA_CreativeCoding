@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     //Speed boost
     public float BoostStrength = 1.5f;
 
+    public float MaxBoost = 10f;
     //Boost 
     public float BoostDuration = 10;
 
@@ -32,15 +33,15 @@ public class PlayerController : MonoBehaviour
     //Controls how much HP the player has at default
     public int maxHealth = 3;
 
-    public GameObject GOText;
+    public int TimeLimit = 600;
 
-    private float DefaultSpeed;
-    private float MaxSpeed;
+    public int PlayTimeLeft;
 
     public bool BoostUnlocked = false;
 
+    private float DefaultSpeed;
 
-    
+    private float MaxSpeed;
 
     //Checks if player is game over
     private bool IsGameOver = false;
@@ -56,7 +57,10 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PlayTimeLeft = TimeLimit;
         IsGameOver = false;
+        isPaused = true;
+        TogglePause();
 
         // Sets CameraTarget as referenced Object
         CameraTarget = GameObject.Find("CameraTarget");
@@ -65,12 +69,11 @@ public class PlayerController : MonoBehaviour
         Stamina = MaxStamina;
         //Sets HP to default maximum at Start
         health = maxHealth;
-        //Disables GameOver text
-        GOText.SetActive(false);
         DefaultSpeed = MovementSpeed;
         MaxSpeed = DefaultSpeed * BoostStrength;
         BoostUnlocked = false;
 
+        InvokeRepeating("TimeLeft", 0, 1);
     }
 
 
@@ -96,7 +99,14 @@ public class PlayerController : MonoBehaviour
         }
 
         //Sets player Game Over, when they run out of stamina
-        if (Stamina <= 0)
+        if (Stamina <= 0 && !IsGameOver)
+        {
+            IsGameOver = true;
+            GameOver();
+        }
+
+        //Game Over if Time runs out
+        if (PlayTimeLeft <= 0 && !IsGameOver)
         {
             IsGameOver = true;
             GameOver();
@@ -129,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Beehive"))
         {
-            RefillStamina();
+            RefillStaminaAndBoost();
         }
     }
 
@@ -160,13 +170,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void DrainStamina()
+    {
+        //Decreases Stamina by fixed rate
+        Stamina -= StaminaDrainRate * Time.deltaTime;
+        //Debug.Log(Stamina);
+    }
+
+    private void SpeedBoost()
+    {
+        MovementSpeed = MaxSpeed;
+        BoostDuration -= BoostDrain * Time.deltaTime;
+        Debug.Log(BoostDuration);
+
+    }
+    private void RefillStaminaAndBoost()
+    {
+        Stamina = MaxStamina;
+        BoostDuration = MaxBoost;
+    }
+    private int TimeLeft()
+    {
+        PlayTimeLeft = TimeLimit--;
+        return PlayTimeLeft;
+    }
     public void TogglePause()
     {
         //Inverts value of bool
         isPaused = !isPaused;
 
         //If either case is true, the game is paused
-        if (isPaused || IsGameOver)
+        if (isPaused ||IsGameOver)
         {
             Time.timeScale = 0f;
         }
@@ -174,13 +208,6 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-    }
-
-    private void DrainStamina()
-    {
-        //Decreases Stamina by fixed rate
-        Stamina -= StaminaDrainRate * Time.deltaTime;
-        //Debug.Log(Stamina);
     }
 
     public void DecreaseHP()
@@ -199,31 +226,27 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void SpeedBoost()
-    {
-        MovementSpeed = MaxSpeed;
-        BoostDuration -= BoostDrain * Time.deltaTime;
-        Debug.Log(BoostDuration);
-        
-    }
-
     public void UnlockSpeedBoost()
     {
         BoostUnlocked = true;
     }
 
-    private void RefillStamina()
-    {
-        Stamina = MaxStamina;
-    }
 
     public void GameOver()
     {
-        IsGameOver = true;
         UIManager UIM = GameObject.Find("UIManager").GetComponent<UIManager>();
+        IsGameOver = true;
         TogglePause();
         UIM.GameOverPopup.SetActive(true);
     }
+
+    public void ResetGameOver()
+    {
+        IsGameOver = false;
+        isPaused = true;
+        TogglePause();
+    }
+
 
 }
 

@@ -8,9 +8,15 @@ public class UIManager : MonoBehaviour
 
     public GameObject StaminaBar;
 
+    public GameObject Boost;
+
+    public GameObject BoostBar;
+
     public GameObject BuffPopup;
 
     public GameObject GameOverPopup;
+
+    public GameObject VictoryPopUp;
 
     public GameObject Heart1;
     public GameObject Heart2;
@@ -21,11 +27,15 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text ScoreHive;
 
+    public TMP_Text Timer;
+
     private PlayerController PC;
 
     private PointSystem PointSystem;
 
     private Image StaminaFill;
+
+    private Image BoostFill;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +43,7 @@ public class UIManager : MonoBehaviour
         PC = Player.GetComponent<PlayerController>();
         PointSystem = Player.GetComponent<PointSystem>();
         StaminaFill = StaminaBar.GetComponent<Image>();
+        BoostFill = BoostBar.GetComponent<Image>();
         ScoreCarrying.text = $"{00}";
         ScoreHive.text = $"{00}";
     }
@@ -47,9 +58,15 @@ public class UIManager : MonoBehaviour
     private void MatchUI()
     {
         StaminaFill.fillAmount = PC.Stamina / PC.MaxStamina;
+        BoostFill.fillAmount = PC.BoostDuration / PC.MaxBoost;
         ScoreCarrying.text = $"{PointSystem.PointsCarrying}";
         ScoreHive.text = $"{PointSystem.PointsHive}";
 
+        Timer.text = $"{PC.PlayTimeLeft / 60}" + ":" + $"{PC.PlayTimeLeft - ((PC.PlayTimeLeft / 60)*60)}";
+        if(PC.PlayTimeLeft < 60) 
+        {
+            Timer.color = Color.red;
+        }
     }
 
     private void Heartbreak()
