@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     public GameObject Heart2;
     public GameObject Heart3;
 
-
     public TMP_Text ScoreCarrying;
 
     public TMP_Text ScoreHive;
