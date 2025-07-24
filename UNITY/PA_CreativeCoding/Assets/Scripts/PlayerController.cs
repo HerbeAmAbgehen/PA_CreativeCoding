@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     //Checks if game is paused
     private bool isPaused = false;
 
+    private bool isWindAffected;
+
+    private bool isStunned = false;
+
     //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
 
@@ -118,7 +122,7 @@ public class PlayerController : MonoBehaviour
         {
             SpeedBoost();
         }
-        else
+        else if (!isStunned)
         {
             MovementSpeed = DefaultSpeed;
         }
@@ -140,6 +144,31 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Beehive"))
         {
             RefillStaminaAndBoost();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("WindTrap"))
+        {
+            isWindAffected = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("WindTrap"))
+        {
+            isWindAffected = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle") && isWindAffected && !isStunned)
+        {
+            StartCoroutine(StunTimer());
+            Debug.Log("Stunned");
         }
     }
 
@@ -181,7 +210,7 @@ public class PlayerController : MonoBehaviour
     {
         MovementSpeed = MaxSpeed;
         BoostDuration -= BoostDrain * Time.deltaTime;
-        Debug.Log(BoostDuration);
+        //Debug.Log(BoostDuration);
 
     }
     private void RefillStaminaAndBoost()
@@ -247,6 +276,14 @@ public class PlayerController : MonoBehaviour
         TogglePause();
     }
 
+    private IEnumerator StunTimer()
+    {
+        isStunned = true;
+        MovementSpeed *= 0.4f;
+        Debug.Log(MovementSpeed);
+        yield return new WaitForSeconds(5f);
+        isStunned = false;
+    }
 
 }
 

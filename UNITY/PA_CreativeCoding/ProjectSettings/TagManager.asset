@@ -10,6 +10,8 @@ TagManager:
   - Barrier1Trigger
   - Barrier2Trigger
   - Barrier3Trigger
+  - WindTrap
+  - Obstacle
   layers:
   - Default
   - TransparentFX

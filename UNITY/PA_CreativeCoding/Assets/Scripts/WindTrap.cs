@@ -23,12 +23,6 @@ public class WindTrap : MonoBehaviour
         WindDirection = WindEnd.transform.position - WindStart.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -36,4 +30,5 @@ public class WindTrap : MonoBehaviour
             PlayerRB.AddForce(WindDirection.normalized * WindStrength, ForceMode.Force);
         }
     }
+
 }
