@@ -19,5 +19,7 @@ public class MainMenu_ButtonManager : MonoBehaviour
         Options.onClick.AddListener(() => OptionsMenu.SetActive(true));
         Quit.onClick.AddListener(() => Application.Quit());
         Return.onClick.AddListener(() => OptionsMenu.SetActive(false));
+
+        Time.timeScale = 1f;
     }
 }

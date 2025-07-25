@@ -26,7 +26,6 @@ public class PointSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ClosePopup();
         VictoryPopUp();
     }
 
@@ -46,21 +45,12 @@ public class PointSystem : MonoBehaviour
             if (!PlayerController.BoostUnlocked && PointsHive >= 55)
             {
                 UIManager.BuffPopup.SetActive(true);
+                UIManager.Boost.SetActive(true);
                 PlayerController.TogglePause();
             }
         }
     }
 
-    private void ClosePopup()
-    {
-        if (UIManager.BuffPopup.activeSelf && Input.GetKeyDown(KeyCode.E))
-        {
-            PlayerController.UnlockSpeedBoost();
-            PlayerController.TogglePause();
-            UIManager.BuffPopup.SetActive(false);
-            UIManager.Boost.SetActive(true);
-        }
-    }
 
     private void VictoryPopUp()
     {

@@ -29,6 +29,8 @@ public class CameraTargetController : MonoBehaviour
         Player = GameObject.Find("Player");
 
         PlayerController = Player.GetComponent < PlayerController > ();
+
+        
     }
 
 

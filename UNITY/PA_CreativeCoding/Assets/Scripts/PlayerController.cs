@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isStunned = false;
 
+    private bool movementLocked = true;
+
     //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
 
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayTimeLeft = TimeLimit;
         IsGameOver = false;
+        movementLocked = true;
         /*isPaused = true;
         TogglePause();*/
 
@@ -77,6 +80,8 @@ public class PlayerController : MonoBehaviour
         MaxSpeed = DefaultSpeed * BoostStrength;
         BoostUnlocked = false;
 
+       
+
         InvokeRepeating("TimeLeft", 3, 1);
     }
 
@@ -89,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
 
         //Locks player movement, if they go Game Over
-        if (!IsGameOver)
+        if (!IsGameOver && !movementLocked)
         {
             GeneralMovement();
 
@@ -182,6 +187,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             transform.Translate(Vector3.left.normalized * -(MovementSpeed / 2) * Time.deltaTime);
+            Debug.Log(MovementSpeed);
         }
         //Moves player down when pressing Left control
         else if (Input.GetKey(KeyCode.LeftControl))
@@ -232,11 +238,13 @@ public class PlayerController : MonoBehaviour
         if (isPaused ||IsGameOver)
         {
             Time.timeScale = 0f;
+            Debug.Log("Pause: " + isPaused + "|GameOver: " + IsGameOver);
             Debug.Log("PAUSED");
         }
         else
         {
             Time.timeScale = 1f;
+            Debug.Log("Pause: " + isPaused + "|GameOver: " + IsGameOver);
             Debug.Log("UNPAUSED");
         }
     }
@@ -276,6 +284,11 @@ public class PlayerController : MonoBehaviour
         IsGameOver = false;
         isPaused = true;
         TogglePause();
+    }
+
+    public void UnlockMovement()
+    {
+        movementLocked = false;
     }
 
     private IEnumerator StunTimer()

@@ -1,17 +1,18 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
-public class Intro_ButtonManager : MonoBehaviour
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class End_ButtonManager : MonoBehaviour
 {
-    public Button Continue;
+
+    public Button Menu;
 
     public GameObject BlackImage;
 
     public float fadeDuration;
 
     private CanvasGroup CG;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,30 +20,12 @@ public class Intro_ButtonManager : MonoBehaviour
 
         StartCoroutine(FadeOutImage());
 
-        Continue.onClick.AddListener(() => FadeNextScene());
+        Menu.onClick.AddListener(() => LoadMenuScene());
     }
 
-    private void FadeNextScene()
+    private void LoadMenuScene()
     {
         StartCoroutine(FadeInImage());
-    }
-
-    private IEnumerator FadeOutImage()
-    {
-
-        float t = 0f;
-        while (t < fadeDuration)
-
-        {
-
-            t += Time.deltaTime;
-            CG.alpha = 1 - Mathf.Clamp01(t / fadeDuration);
-            yield return null;
-
-        }
-
-        CG.alpha = 0f;
-
     }
 
     private IEnumerator FadeInImage()
@@ -60,7 +43,25 @@ public class Intro_ButtonManager : MonoBehaviour
         }
 
         CG.alpha = 1f;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("MainMenu");
+
+    }
+
+    private IEnumerator FadeOutImage()
+    {
+
+        float t = 0f;
+        while (t < fadeDuration)
+
+        {
+
+            t += Time.deltaTime;
+            CG.alpha = 1 - Mathf.Clamp01(t / fadeDuration);
+            yield return null;
+
+        }
+
+        CG.alpha = 0f;
 
     }
 }

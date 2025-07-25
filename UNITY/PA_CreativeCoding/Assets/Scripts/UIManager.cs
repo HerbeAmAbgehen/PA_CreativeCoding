@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     private Image StaminaFill;
 
     private Image BoostFill;
+
+    private bool gameOver = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -82,7 +84,11 @@ public class UIManager : MonoBehaviour
 
             case 0:
                 Heart1.SetActive(false);
-                PC.GameOver();
+                if (!gameOver)
+                {
+                    gameOver = true;
+                    PC.GameOver();
+                }
                 break;
         }
     }
