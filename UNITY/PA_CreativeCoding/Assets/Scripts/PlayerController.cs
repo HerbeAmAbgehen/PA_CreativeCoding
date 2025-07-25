@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
     {
         PlayTimeLeft = TimeLimit;
         IsGameOver = false;
-        isPaused = true;
-        TogglePause();
+        /*isPaused = true;
+        TogglePause();*/
 
         // Sets CameraTarget as referenced Object
         CameraTarget = GameObject.Find("CameraTarget");
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         MaxSpeed = DefaultSpeed * BoostStrength;
         BoostUnlocked = false;
 
-        InvokeRepeating("TimeLeft", 0, 1);
+        InvokeRepeating("TimeLeft", 3, 1);
     }
 
 
@@ -232,10 +232,12 @@ public class PlayerController : MonoBehaviour
         if (isPaused ||IsGameOver)
         {
             Time.timeScale = 0f;
+            Debug.Log("PAUSED");
         }
         else
         {
             Time.timeScale = 1f;
+            Debug.Log("UNPAUSED");
         }
     }
 
