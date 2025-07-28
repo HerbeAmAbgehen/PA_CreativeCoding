@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         //Moves Player forward or backward
         //transform.Translate(Vector3.up.normalized * MovementSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
-        PlayerRb.AddRelativeForce(Vector3.up * MovementSpeed * 7 *Time.deltaTime * Input.GetAxis("Vertical"), ForceMode.VelocityChange);
+        PlayerRb.AddRelativeForce(Vector3.up * MovementSpeed * 5.7f *Time.deltaTime * Input.GetAxis("Vertical"), ForceMode.VelocityChange);
 
 
         //Moves player up when pressing space
