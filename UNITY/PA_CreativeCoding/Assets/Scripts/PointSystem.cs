@@ -35,7 +35,7 @@ public class PointSystem : MonoBehaviour
         {
             PointsCarrying += DefaultPoints;
             Debug.Log(PointsCarrying);
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<MeshRenderer>().materials[2].color = Color.white;
         }
 
         if (other.CompareTag("Beehive"))

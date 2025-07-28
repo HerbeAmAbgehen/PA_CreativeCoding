@@ -119,6 +119,7 @@ public class GameScene_ButtonManager : MonoBehaviour
 
     private void RestartGame()
     {
+        PC.ResetGameOver();
         SceneManager.LoadScene("GameScene");
     }
 

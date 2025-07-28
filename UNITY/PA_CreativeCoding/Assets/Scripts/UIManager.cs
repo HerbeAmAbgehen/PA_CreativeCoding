@@ -87,6 +87,7 @@ public class UIManager : MonoBehaviour
                 if (!gameOver)
                 {
                     gameOver = true;
+                    Debug.Log("No HP");
                     PC.GameOver();
                 }
                 break;

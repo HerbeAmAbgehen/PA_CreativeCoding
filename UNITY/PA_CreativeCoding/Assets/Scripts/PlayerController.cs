@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         Stamina = MaxStamina;
         //Sets HP to default maximum at Start
         health = maxHealth;
+        Debug.Log("Set HP to max");
         DefaultSpeed = MovementSpeed;
         MaxSpeed = DefaultSpeed * BoostStrength;
         BoostUnlocked = false;
@@ -111,6 +112,7 @@ public class PlayerController : MonoBehaviour
         if (Stamina <= 0 && !IsGameOver)
         {
             IsGameOver = true;
+            Debug.Log("No Stamina");
             GameOver();
         }
 
@@ -118,6 +120,7 @@ public class PlayerController : MonoBehaviour
         if (PlayTimeLeft <= 0 && !IsGameOver)
         {
             IsGameOver = true;
+            Debug.Log("No Time left");
             GameOver();
         }
 
