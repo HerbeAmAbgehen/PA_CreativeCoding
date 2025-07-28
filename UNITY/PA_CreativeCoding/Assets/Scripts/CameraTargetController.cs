@@ -14,7 +14,7 @@ public class CameraTargetController : MonoBehaviour
     //Referenced Object to copy position from
     private GameObject Player;
 
-    private PlayerController PlayerController;
+    private GameSettings GameSettings;
 
     //Variables to store Inputs
     private float RotationZ;
@@ -28,8 +28,7 @@ public class CameraTargetController : MonoBehaviour
         //Sets referenced Object
         Player = GameObject.Find("Player");
 
-        PlayerController = Player.GetComponent < PlayerController > ();
-
+        GameSettings = GameObject.Find("OptionsMenu").GetComponent<GameSettings>();
         
     }
 
@@ -37,7 +36,7 @@ public class CameraTargetController : MonoBehaviour
     private void Update()
     {
         //Gets Rotation from Horizontal / Vertical Mouse Input and AD / LR Arrow keys
-        if(PlayerController.InvertMouse)
+        if(GameSettings.invertFlight)
         {
             RotationZ = Input.GetAxis("Mouse Y") * CameraSpeed * Time.deltaTime;
         }

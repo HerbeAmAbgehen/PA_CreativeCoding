@@ -11,7 +11,6 @@ public class GameScene_ButtonManager : MonoBehaviour
     public Button Quit;
     public Button Continue;
     public Button Options;
-    public Button Return;
     public Button GORestart;
     public Button GOMenu;
     public Button Victory;
@@ -19,7 +18,6 @@ public class GameScene_ButtonManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject TutorialMenu;
-    public GameObject OptionsMenu;
     public GameObject Blackimage;
     public GameObject BuffPopUp;
 
@@ -32,15 +30,21 @@ public class GameScene_ButtonManager : MonoBehaviour
     private bool FirstTimeTutorial = true;
     private bool showOptions = false;
 
+    
+
     private PlayerController PC;
     private CanvasGroup CG;
     private CameraTargetController CTC;
+    private Canvas OM;
+    private Button Return;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PC = GameObject.Find("Player").GetComponent<PlayerController>();
         CG = Blackimage.GetComponent<CanvasGroup>();
         CTC = GameObject.Find("CameraTarget").GetComponent<CameraTargetController>();
+        OM = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
+        Return = GameObject.Find("ButtonReturn").GetComponent<Button>();
 
         DefaultCameraSpeed = CTC.CameraSpeed;
 
@@ -55,8 +59,8 @@ public class GameScene_ButtonManager : MonoBehaviour
         Continue.onClick.AddListener(() => ToggleTutorialButton());
         Tutorial.onClick.AddListener(() => ShowTutorialMenu());
         Quit.onClick.AddListener(() => LoadMenu());
-        Options.onClick.AddListener(() => OptionsMenu.SetActive(true));
-        Return.onClick.AddListener(() => OptionsMenu.SetActive(false));
+        Options.onClick.AddListener(() => OM.enabled = true);
+        Return.onClick.AddListener(() => OM.enabled = false);
         GORestart.onClick.AddListener(() => RestartGame());
         GOMenu.onClick.AddListener(() => LoadMenu());
         Victory.onClick.AddListener(() => LoadEndScene());
