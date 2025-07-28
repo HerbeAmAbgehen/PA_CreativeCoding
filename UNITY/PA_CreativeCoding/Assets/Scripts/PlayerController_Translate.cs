@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_Translate: MonoBehaviour
 {
     public bool InvertMouse = false;
 
@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
     //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
 
-    private Rigidbody PlayerRb;
-
     private PointSystem PointSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -74,7 +72,6 @@ public class PlayerController : MonoBehaviour
         // Sets CameraTarget as referenced Object
         CameraTarget = GameObject.Find("CameraTarget");
         PointSystem = GetComponent<PointSystem>();
-        PlayerRb = GetComponent<Rigidbody>();
         //Sets Stamina to maximum on Start
         Stamina = MaxStamina;
         //Sets HP to default maximum at Start
@@ -186,22 +183,19 @@ public class PlayerController : MonoBehaviour
     private void GeneralMovement()
     {
         //Moves Player forward or backward
-        //transform.Translate(Vector3.up.normalized * MovementSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
-        PlayerRb.AddRelativeForce(Vector3.up * MovementSpeed * 7 *Time.deltaTime * Input.GetAxis("Vertical"), ForceMode.VelocityChange);
+        transform.Translate(Vector3.up.normalized * MovementSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
 
 
         //Moves player up when pressing space
         if (Input.GetKey(KeyCode.Space))
         {
-            //transform.Translate(Vector3.left.normalized * -(MovementSpeed / 2) * Time.deltaTime);
-            PlayerRb.AddRelativeForce(Vector3.left * -(MovementSpeed / 2) * 7 * Time.deltaTime, ForceMode.VelocityChange);
+            transform.Translate(Vector3.left.normalized * -(MovementSpeed / 2) * Time.deltaTime);
             Debug.Log(MovementSpeed);
         }
         //Moves player down when pressing Left control
         else if (Input.GetKey(KeyCode.LeftControl))
         {
-            PlayerRb.AddRelativeForce(Vector3.left * (MovementSpeed / 2) * 7 * Time.deltaTime, ForceMode.VelocityChange);
-            //transform.Translate(Vector3.left.normalized * (MovementSpeed / 2) * Time.deltaTime);
+            transform.Translate(Vector3.left.normalized * (MovementSpeed / 2) * Time.deltaTime);
         }
     }
 
