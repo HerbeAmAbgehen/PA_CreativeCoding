@@ -6,15 +6,25 @@ public class GameSettings : MonoBehaviour
     public Toggle invertMouse;
 
     public Slider setVolume;
-    
+
     public bool invertFlight = false;
 
-    private float volume = Mathf.Clamp(50, 0, 100);
 
-    private void Update()
+    private void Start()
+    {
+        setVolume.onValueChanged.AddListener(delegate { SetVolume(); });
+        invertMouse.onValueChanged.AddListener(delegate { InvertFlight(); });
+
+        AudioListener.volume = setVolume.value;
+    }
+
+    private void SetVolume()
+    {
+        AudioListener.volume = setVolume.value;
+    }
+
+    private void InvertFlight()
     {
         invertFlight = invertMouse.isOn;
-
-        volume = setVolume.value;
     }
 }

@@ -39,9 +39,17 @@ public class PlayerController : MonoBehaviour
 
     public bool BoostUnlocked = false;
 
+    public AudioSource GlobalAudio;
+
+    public AudioClip HitRock;
+
     private float DefaultSpeed;
 
     private float MaxSpeed;
+
+    private float DefaultPitch;
+
+    private float HighPitch;
 
     //Checks if player is game over
     private bool IsGameOver = false;
@@ -60,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody PlayerRb;
 
+    private AudioSource PlayerAudio;
+
     private PointSystem PointSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,6 +85,7 @@ public class PlayerController : MonoBehaviour
         CameraTarget = GameObject.Find("CameraTarget");
         PointSystem = GetComponent<PointSystem>();
         PlayerRb = GetComponent<Rigidbody>();
+        PlayerAudio = GetComponent<AudioSource>();
         //Sets Stamina to maximum on Start
         Stamina = MaxStamina;
         //Sets HP to default maximum at Start
@@ -83,6 +94,8 @@ public class PlayerController : MonoBehaviour
         DefaultSpeed = MovementSpeed;
         MaxSpeed = DefaultSpeed * BoostStrength;
         BoostUnlocked = false;
+        DefaultPitch = PlayerAudio.pitch;
+        HighPitch = DefaultPitch * 1.1f;
 
        
 
@@ -135,6 +148,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (!isStunned)
         {
+            PlayerAudio.pitch = DefaultPitch;
             MovementSpeed = DefaultSpeed;
         }
     }
@@ -178,6 +192,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle") && isWindAffected && !isStunned)
         {
+            GlobalAudio.clip = HitRock;
+            GlobalAudio.Play();
             StartCoroutine(StunTimer());
             Debug.Log("Stunned");
         }
@@ -223,6 +239,7 @@ public class PlayerController : MonoBehaviour
 
     private void SpeedBoost()
     {
+        PlayerAudio.pitch = HighPitch;
         MovementSpeed = MaxSpeed;
         BoostDuration -= BoostDrain * Time.deltaTime;
         //Debug.Log(BoostDuration);

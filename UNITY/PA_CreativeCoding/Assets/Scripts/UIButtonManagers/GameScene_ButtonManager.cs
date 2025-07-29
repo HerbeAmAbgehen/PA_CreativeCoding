@@ -21,6 +21,11 @@ public class GameScene_ButtonManager : MonoBehaviour
     public GameObject Blackimage;
     public GameObject BuffPopUp;
 
+    public AudioSource PlayerAudio;
+    public AudioSource GlobalAudio;
+
+    public AudioClip MenuClick;
+
     public float fadeDuration;
 
     private float DefaultCameraSpeed;
@@ -29,8 +34,6 @@ public class GameScene_ButtonManager : MonoBehaviour
     private bool TogglePM = false;
     private bool FirstTimeTutorial = true;
     private bool showOptions = false;
-
-    
 
     private PlayerController PC;
     private CanvasGroup CG;
@@ -59,12 +62,16 @@ public class GameScene_ButtonManager : MonoBehaviour
         Continue.onClick.AddListener(() => ToggleTutorialButton());
         Tutorial.onClick.AddListener(() => ShowTutorialMenu());
         Quit.onClick.AddListener(() => LoadMenu());
-        Options.onClick.AddListener(() => OM.enabled = true);
-        Return.onClick.AddListener(() => OM.enabled = false);
+        Options.onClick.AddListener(() => ShowOptions());
+        Return.onClick.AddListener(() => HideOptions());
         GORestart.onClick.AddListener(() => RestartGame());
         GOMenu.onClick.AddListener(() => LoadMenu());
         Victory.onClick.AddListener(() => LoadEndScene());
         Buff.onClick.AddListener(() => CloseBuffPopUp());
+
+        PlayerAudio.Play();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -80,18 +87,27 @@ public class GameScene_ButtonManager : MonoBehaviour
         TogglePM = !TogglePM;
         if (TogglePM)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            PlayerAudio.Stop();
             PC.TogglePause();
             PauseMenu.SetActive(true);
         }
         else
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            PlayerAudio.Play();
             PauseMenu.SetActive(false);
+            OM.enabled = false;
             PC.TogglePause();
         }
     }
 
     private void ShowTutorialMenu()
     {
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
         PauseMenu.SetActive(false);
         TutorialMenu.SetActive(true);
     }
@@ -100,6 +116,11 @@ public class GameScene_ButtonManager : MonoBehaviour
     {
         if (FirstTimeTutorial)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            GlobalAudio.clip = MenuClick;
+            GlobalAudio.Play();
+            PlayerAudio.Play();
             FirstTimeTutorial = false;
             TutorialMenu.SetActive(false);
             PC.UnlockMovement();
@@ -108,6 +129,8 @@ public class GameScene_ButtonManager : MonoBehaviour
         }
         else
         {
+            GlobalAudio.clip = MenuClick;
+            GlobalAudio.Play();
             TutorialMenu.SetActive(false);
             PauseMenu.SetActive(true);
         }
@@ -115,32 +138,56 @@ public class GameScene_ButtonManager : MonoBehaviour
 
     private void CloseBuffPopUp()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
         BuffPopUp.SetActive(false);
         PC.UnlockSpeedBoost();
+        PlayerAudio.Play();
         PC.TogglePause();
         
     }
 
     private void RestartGame()
     {
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
         PC.ResetGameOver();
         SceneManager.LoadScene("GameScene");
     }
 
     private void LoadEndScene()
     {
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
         Victory.interactable = false;
         CTC.CameraSpeed = 0;
         PC.TogglePause();
-        StartCoroutine(FadeInImage());
+        StartCoroutine(FadeInImage("End"));
     }
 
     private void LoadMenu()
     {
-        
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
         PC.ResetGameOver();
         PC.TogglePause();
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(FadeInImage("MainMenu"));
+    }
+
+    private void ShowOptions()
+    {
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
+        OM.enabled = true;
+    }
+
+    private void HideOptions()
+    {
+        GlobalAudio.clip = MenuClick;
+        GlobalAudio.Play();
+        OM.enabled = false;
     }
 
     private IEnumerator FadeOutImage()
@@ -159,10 +206,13 @@ public class GameScene_ButtonManager : MonoBehaviour
 
         CG.alpha = 0f;
         PC.TogglePause();
+        PlayerAudio.Stop();
         TutorialMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
-    private IEnumerator FadeInImage()
+    private IEnumerator FadeInImage(string SceneName)
     {
 
         float t = 0f;
@@ -177,7 +227,7 @@ public class GameScene_ButtonManager : MonoBehaviour
         }
 
         CG.alpha = 1f;
-        SceneManager.LoadScene("End");
+        SceneManager.LoadScene(SceneName);
 
     }
 }

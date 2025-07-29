@@ -12,6 +12,8 @@ public class End_ButtonManager : MonoBehaviour
 
     public float fadeDuration;
 
+    public AudioSource GlobalAudio;
+
     private CanvasGroup CG;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +27,7 @@ public class End_ButtonManager : MonoBehaviour
 
     private void LoadMenuScene()
     {
+        GlobalAudio.Play();
         StartCoroutine(FadeInImage());
     }
 

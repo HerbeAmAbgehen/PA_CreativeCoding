@@ -9,6 +9,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     public float turnStrength;
 
+    public AudioSource GlobalAudio;
+
+    public AudioClip Damage;
+
     private Vector3 startPosition;
     private Vector3 startRotation;
 
@@ -126,6 +130,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !AttackCooldown)
         {
+            GlobalAudio.clip = Damage;
+            GlobalAudio.Play();
             StartCoroutine(PostAttackInvincibility());
             playerController.DecreaseHP();
         }

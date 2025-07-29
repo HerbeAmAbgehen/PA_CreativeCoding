@@ -8,6 +8,8 @@ public class Intro_ButtonManager : MonoBehaviour
 
     public GameObject BlackImage;
 
+    public AudioSource MenuClick;
+
     public float fadeDuration;
 
     private CanvasGroup CG;
@@ -24,6 +26,7 @@ public class Intro_ButtonManager : MonoBehaviour
 
     private void FadeNextScene()
     {
+        MenuClick.Play();
         StartCoroutine(FadeInImage());
     }
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenu_ButtonManager : MonoBehaviour
 {
@@ -12,21 +13,89 @@ public class MainMenu_ButtonManager : MonoBehaviour
     public Toggle invertMouse;
     public Slider volumeSlider;
 
+    public AudioSource MenuClick;
+
+    public float fadeDuration = 1f;
 
     private Canvas OptionsMenu;
     private Button Return;
+
+    private CanvasGroup CG;
 
     private void Start()
     {
         OptionsMenu = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
         Return = GameObject.Find("ButtonReturn").GetComponent<Button>();
+        CG = GameObject.Find("BlackImage").GetComponent<CanvasGroup>();
 
-        Play.onClick.AddListener(() => SceneManager.LoadScene("Intro"));
-        Options.onClick.AddListener(() => OptionsMenu.enabled = true);
-        Quit.onClick.AddListener(() => Application.Quit());
-        Return.onClick.AddListener(() => OptionsMenu.enabled = false);
+        Play.onClick.AddListener(() => StartGame());
+        Options.onClick.AddListener(() => ShowOptions());
+        Quit.onClick.AddListener(() => ExitGame());
+        Return.onClick.AddListener(() => HideOptions());
 
 
         Time.timeScale = 1f;
+        StartCoroutine(FadeOutImage());
+    }
+
+    private void StartGame()
+    {
+        MenuClick.Play();
+        StartCoroutine(FadeInImage());
+    }
+
+    private void ShowOptions()
+    {
+        MenuClick.Play();
+        OptionsMenu.enabled = true;
+    }
+
+    private void HideOptions()
+    {
+        MenuClick.Play();
+        OptionsMenu.enabled = false;
+    }
+
+    private void ExitGame()
+    {
+        MenuClick.Play();
+        Application.Quit();
+    }
+
+    private IEnumerator FadeInImage()
+    {
+
+        float t = 0f;
+        while (t < fadeDuration)
+
+        {
+
+            t += Time.deltaTime;
+            CG.alpha = Mathf.Clamp01(t / fadeDuration);
+            yield return null;
+
+        }
+
+        CG.alpha = 1f;
+        SceneManager.LoadScene("Intro");
+
+    }
+
+    private IEnumerator FadeOutImage()
+    {
+
+        float t = 0f;
+        while (t < fadeDuration)
+
+        {
+
+            t += Time.deltaTime;
+            CG.alpha = 1 - Mathf.Clamp01(t / fadeDuration);
+            yield return null;
+
+        }
+
+        CG.alpha = 0f;
+
     }
 }
