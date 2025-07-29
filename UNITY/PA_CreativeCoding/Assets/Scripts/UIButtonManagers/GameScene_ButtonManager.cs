@@ -172,7 +172,6 @@ public class GameScene_ButtonManager : MonoBehaviour
         GlobalAudio.clip = MenuClick;
         GlobalAudio.Play();
         PC.ResetGameOver();
-        PC.TogglePause();
         StartCoroutine(FadeInImage("MainMenu"));
     }
 

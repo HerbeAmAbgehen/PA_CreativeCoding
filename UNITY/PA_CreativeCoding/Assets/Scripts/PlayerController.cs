@@ -301,6 +301,8 @@ public class PlayerController : MonoBehaviour
     {
         UIManager UIM = GameObject.Find("UIManager").GetComponent<UIManager>();
         IsGameOver = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
         TogglePause();
         UIM.GameOverPopup.SetActive(true);
     }
