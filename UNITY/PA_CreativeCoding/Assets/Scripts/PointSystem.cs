@@ -63,7 +63,7 @@ public class PointSystem : MonoBehaviour
                 Cursor.visible = true;
                 PlayerAudio.Stop();
                 UIManager.BuffPopup.SetActive(true);
-                UIManager.Boost.SetActive(true);
+                UIManager.BoostIcon.SetActive(true);
                 PlayerController.TogglePause();
             }
         }

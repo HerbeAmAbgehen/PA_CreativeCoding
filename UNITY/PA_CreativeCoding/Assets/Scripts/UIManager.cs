@@ -8,9 +8,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject StaminaBar;
 
-    public GameObject Boost;
-
-    public GameObject BoostBar;
+    public GameObject BoostIcon;
 
     public GameObject BuffPopup;
 
@@ -44,7 +42,7 @@ public class UIManager : MonoBehaviour
         PC = Player.GetComponent<PlayerController>();
         PointSystem = Player.GetComponent<PointSystem>();
         StaminaFill = StaminaBar.GetComponent<Image>();
-        BoostFill = BoostBar.GetComponent<Image>();
+        BoostFill = BoostIcon.GetComponent<Image>();
         ScoreCarrying.text = $"{00}";
         ScoreHive.text = $"{00}";
     }
