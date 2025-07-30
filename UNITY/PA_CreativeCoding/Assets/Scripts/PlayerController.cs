@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour
 
     private bool movementLocked = true;
 
+    private bool blockGameOver = false;
+
     //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
 
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
         PlayTimeLeft = TimeLimit;
         IsGameOver = false;
         movementLocked = true;
+        blockGameOver = false;
         /*isPaused = true;
         TogglePause();*/
 
@@ -125,7 +128,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Sets player Game Over, when they run out of stamina
-        if (Stamina <= 0 && !IsGameOver)
+        if (Stamina <= 0 && !IsGameOver && !blockGameOver)
         {
             IsGameOver = true;
             Debug.Log("No Stamina");
@@ -133,7 +136,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Game Over if Time runs out
-        if (PlayTimeLeft <= 0 && !IsGameOver)
+        if (PlayTimeLeft <= 0 && !IsGameOver && !blockGameOver)
         {
             IsGameOver = true;
             Debug.Log("No Time left");
@@ -303,6 +306,7 @@ public class PlayerController : MonoBehaviour
         IsGameOver = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
+        PlayerAudio.Stop();
         TogglePause();
         UIM.GameOverPopup.SetActive(true);
     }
@@ -311,6 +315,7 @@ public class PlayerController : MonoBehaviour
     {
         IsGameOver = false;
         isPaused = true;
+        blockGameOver = true;
         TogglePause();
     }
 
