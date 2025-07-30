@@ -2,34 +2,27 @@ using UnityEngine;
 
 public class CameraTargetController : MonoBehaviour
 {
-    //Speed at which camera rotates
-    public float CameraSpeed;
-   
-    //Controls Maximum Offset for Camera Bounce
-    public float BounceIntensity;
+    //Script controls rotation of Camera Parent Object and copies location of Player Object
 
-    //Controls Speed of Camera Bounce
+    public float CameraSpeed;
+    public float BounceIntensity;
     public float BounceSpeed;
 
-    //Referenced Object to copy position from
-    private GameObject Player;
 
+    private float RotationZ;
+    private float RotationX;
+    private float RotationY;
+
+    private GameObject Player;
     private GameSettings GameSettings;
 
-    //Variables to store Inputs
-    private float RotationZ;
 
-    private float RotationX;
-
-    private float RotationY;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Sets referenced Object
         Player = GameObject.Find("Player");
 
-        GameSettings = GameObject.Find("OptionsMenu").GetComponent<GameSettings>();
-        
+        GameSettings = GameObject.Find("OptionsMenu").GetComponent<GameSettings>();      
     }
 
 
@@ -55,16 +48,14 @@ public class CameraTargetController : MonoBehaviour
     void LateUpdate()
     {
         //Sets the objects position to that of the player object
-        transform.position = Player.transform.position;
-
-        
+        transform.position = Player.transform.position;     
 
         //Uses Sinean Function to generate Offset for Bounce Method
         float Offset = Mathf.Sin(BounceSpeed * Time.time) * BounceIntensity;
         CameraBounce(Offset);
     }
 
-    //Moves Camear Up and Down on Y Axis
+    //Moves Camera Up and Down on Y Axis
     private void CameraBounce(float BounceOffset)
     {
         //Moves Object along Y Axis depending on given offset variable

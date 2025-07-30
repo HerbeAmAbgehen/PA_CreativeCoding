@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FadeImage : MonoBehaviour
 {
+    //Used to Fade a black image on scene changes to smooth transitions between scenes
+
     public GameObject BlackImage;
 
     public int fadeDuration;
@@ -15,6 +17,7 @@ public class FadeImage : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    //Fades black image to full opacity and then exits application
     private IEnumerator FadeOutQuit()
     {
 
@@ -34,6 +37,8 @@ public class FadeImage : MonoBehaviour
 
     }
 
+
+    //Fades image to full transparency
     private IEnumerator FadeIn()
     {
 
@@ -52,6 +57,7 @@ public class FadeImage : MonoBehaviour
 
     }
 
+    //Used to call Coroutine from other scripts
     public void FadeQuit()
     {
         StartCoroutine(FadeOutQuit());

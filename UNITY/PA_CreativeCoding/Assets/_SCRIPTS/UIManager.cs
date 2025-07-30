@@ -4,36 +4,28 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    //Used to match UI and HUD Elements to current conditions
+
     public GameObject Player;
 
     public GameObject StaminaBar;
-
     public GameObject BoostIcon;
-
     public GameObject BoostBar;
-
     public GameObject BuffPopup;
-
     public GameObject GameOverPopup;
-
     public GameObject VictoryPopUp;
-
     public GameObject Heart1;
     public GameObject Heart2;
     public GameObject Heart3;
 
     public TMP_Text ScoreCarrying;
-
     public TMP_Text ScoreHive;
-
     public TMP_Text Timer;
 
+
     private PlayerController PC;
-
     private PointSystem PointSystem;
-
     private Image StaminaFill;
-
     private Image BoostFill;
 
     private bool gameOver = false;
@@ -56,6 +48,7 @@ public class UIManager : MonoBehaviour
         Heartbreak();
     }
 
+    //Sets Stamina and Boost Bar fill to amount left, sets score counter to achieved points, colors timer red if less than 1 minute remaining
     private void MatchUI()
     {
         StaminaFill.fillAmount = PC.Stamina / PC.MaxStamina;
@@ -70,6 +63,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Disables Heart icon on call to match player health, if health is 0 sets player game over
     private void Heartbreak()
     {
         switch (PC.health)
@@ -87,7 +81,6 @@ public class UIManager : MonoBehaviour
                 if (!gameOver)
                 {
                     gameOver = true;
-                    Debug.Log("No HP");
                     PC.GameOver();
                 }
                 break;

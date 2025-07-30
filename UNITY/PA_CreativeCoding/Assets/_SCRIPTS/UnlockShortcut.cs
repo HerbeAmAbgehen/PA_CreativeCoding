@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class UnlockShortcut : MonoBehaviour
 {
+    //Unocks level shortcuts if matching trigger is entered
+
     public GameObject Barrier1;
     public GameObject Barrier2;
     public GameObject Barrier3;

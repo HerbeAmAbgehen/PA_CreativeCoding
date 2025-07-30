@@ -4,115 +4,71 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool InvertMouse = false;
+    //Script contains Player Controls, conditions for game over, PlayTimer, controls trigger events
 
-    //Speed at which player moves
     public float MovementSpeed = 10;
-
-    //Speed boost
     public float BoostStrength = 1.5f;
-
     public float MaxBoost = 10f;
-    //Boost 
     public float BoostDuration = 10;
-
     public float BoostDrain = 1;
-
-    //Controls maximum amount of stamina the player has
     public float MaxStamina = 100;
-
-    //Controls how much Stamina is drained while moving
     public float StaminaDrainRate;
-
-    //Current amount of Stamina
     public float Stamina;
 
-    //Current HP
     public int health;
-
-    //Controls how much HP the player has at default
     public int maxHealth = 3;
-
     public int TimeLimit = 600;
-
     public int PlayTimeLeft;
 
     public bool BoostUnlocked = false;
 
     public AudioSource GlobalAudio;
-
     public AudioClip HitRock;
 
+
     private float DefaultSpeed;
-
     private float MaxSpeed;
-
     private float DefaultPitch;
-
     private float HighPitch;
 
-    //Checks if player is game over
     private bool IsGameOver = false;
-
-    //Checks if game is paused
     private bool isPaused = false;
-
     private bool isWindAffected;
-
     private bool isStunned = false;
-
     private bool movementLocked = true;
-
     private bool blockGameOver = false;
 
-    //ReferencedObject to copy rotation from
     private GameObject CameraTarget;
-
     private Rigidbody PlayerRb;
-
     private AudioSource PlayerAudio;
 
-    private PointSystem PointSystem;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Gets information on referenced objects and components, Sets fixed values to given defaults, sets important bools to correct start values
     void Start()
     {
-        PlayTimeLeft = TimeLimit;
-        IsGameOver = false;
-        movementLocked = true;
-        blockGameOver = false;
-        /*isPaused = true;
-        TogglePause();*/
-
-        // Sets CameraTarget as referenced Object
         CameraTarget = GameObject.Find("CameraTarget");
-        PointSystem = GetComponent<PointSystem>();
         PlayerRb = GetComponent<Rigidbody>();
         PlayerAudio = GetComponent<AudioSource>();
-        //Sets Stamina to maximum on Start
+
+        PlayTimeLeft = TimeLimit;
         Stamina = MaxStamina;
-        //Sets HP to default maximum at Start
         health = maxHealth;
-        Debug.Log("Set HP to max");
         DefaultSpeed = MovementSpeed;
         MaxSpeed = DefaultSpeed * BoostStrength;
-        BoostUnlocked = false;
         DefaultPitch = PlayerAudio.pitch;
         HighPitch = DefaultPitch * 1.1f;
 
-       
+        IsGameOver = false;
+        movementLocked = true;
+        blockGameOver = false;
+        BoostUnlocked = false;
 
+        //Calls Timer function
         InvokeRepeating("TimeLeft", 3, 1);
     }
-
-
-
 
     // Update is called once per frame
     void Update()
     {
-
-
         //Locks player movement, if they go Game Over
         if (!IsGameOver && !movementLocked)
         {
@@ -143,8 +99,7 @@ public class PlayerController : MonoBehaviour
             GameOver();
         }
 
-
-        //Speed boost
+        //Calls speed boost function
         if (Input.GetKey(KeyCode.LeftShift) && BoostDuration > 0 && BoostUnlocked)
         {
             SpeedBoost();
@@ -169,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Refillst Stamina and Speed Boost when player returns to hive
         if (other.CompareTag("Beehive"))
         {
             RefillStaminaAndBoost();
@@ -177,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //Checks if player is currently inside WindTrap
         if (other.CompareTag("WindTrap"))
         {
             isWindAffected = true;
@@ -185,6 +142,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //Resets bool if player exits WindTrap
         if (other.CompareTag("WindTrap"))
         {
             isWindAffected = false;
@@ -193,6 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //If player hits object with "obstacle" tag while inside WindTrap, applies slow
         if (collision.gameObject.CompareTag("Obstacle") && isWindAffected && !isStunned)
         {
             GlobalAudio.clip = HitRock;
@@ -202,6 +161,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    //Main function to move player object around (Reworked to use AddForce to fix collider clipping)
     private void GeneralMovement()
     {
         //Moves Player forward or backward
@@ -223,7 +184,8 @@ public class PlayerController : MonoBehaviour
             //transform.Translate(Vector3.left.normalized * (MovementSpeed / 2) * Time.deltaTime);
         }
     }
-
+    
+    //Uses rotation of CameraTarget to control rotation
     private void CameraMovement()
     {
         //Copies Rotation From CameraTarget Rotation, when LAlt is not pressed and player is not Game Over
@@ -233,31 +195,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Decreases Stamina by fixed rate
     private void DrainStamina()
     {
-        //Decreases Stamina by fixed rate
         Stamina -= StaminaDrainRate * Time.deltaTime;
-        //Debug.Log(Stamina);
     }
 
+    //Applies speed boost when called
     private void SpeedBoost()
     {
         PlayerAudio.pitch = HighPitch;
         MovementSpeed = MaxSpeed;
         BoostDuration -= BoostDrain * Time.deltaTime;
-        //Debug.Log(BoostDuration);
-
     }
+
+    //Called when player enters beehive, refills stamina and speedboost
     private void RefillStaminaAndBoost()
     {
         Stamina = MaxStamina;
         BoostDuration = MaxBoost;
     }
+
+    //Decreases Time left by 1 second on call
     private int TimeLeft()
     {
         PlayTimeLeft = TimeLimit--;
         return PlayTimeLeft;
     }
+
+    //Sets timescale to 0 or 1, pausing the game, switches on call
     public void TogglePause()
     {
         //Inverts value of bool
@@ -267,17 +233,14 @@ public class PlayerController : MonoBehaviour
         if (isPaused ||IsGameOver)
         {
             Time.timeScale = 0f;
-            Debug.Log("Pause: " + isPaused + "|GameOver: " + IsGameOver);
-            Debug.Log("PAUSED");
         }
         else
         {
             Time.timeScale = 1f;
-            Debug.Log("Pause: " + isPaused + "|GameOver: " + IsGameOver);
-            Debug.Log("UNPAUSED");
         }
     }
 
+    //Decreases hp by 1 and points carrying by 10 on call, if player carries less than 10 points, sets points to 0
     public void DecreaseHP()
     {
         PointSystem PS = GetComponent<PointSystem>();
@@ -293,13 +256,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    //Unlocks speed boost by setting bool on call
     public void UnlockSpeedBoost()
     {
         BoostUnlocked = true;
     }
 
-
+    //Sets GameOver bool to true and pauses game, shows UI Panel and unlocks cursor
     public void GameOver()
     {
         UIManager UIM = GameObject.Find("UIManager").GetComponent<UIManager>();
@@ -311,6 +274,7 @@ public class PlayerController : MonoBehaviour
         UIM.GameOverPopup.SetActive(true);
     }
 
+    //Resets GameOver conditions and blocks them from applying until scene reload
     public void ResetGameOver()
     {
         IsGameOver = false;
@@ -319,11 +283,13 @@ public class PlayerController : MonoBehaviour
         TogglePause();
     }
 
+    //Used to block player movement until called
     public void UnlockMovement()
     {
         movementLocked = false;
     }
 
+    //Applies Slow effect for five seconds, called when player gets stunned by wind
     private IEnumerator StunTimer()
     {
         isStunned = true;

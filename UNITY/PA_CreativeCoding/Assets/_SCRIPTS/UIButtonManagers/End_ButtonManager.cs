@@ -1,19 +1,19 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
-public class Intro_ButtonManager : MonoBehaviour
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class End_ButtonManager : MonoBehaviour
 {
-    public Button Continue;
+    //Controls what each Button on UI does
 
+    public Button Menu;
     public GameObject BlackImage;
-
-    public AudioSource MenuClick;
+    public AudioSource GlobalAudio;
 
     public float fadeDuration;
 
     private CanvasGroup CG;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,33 +21,16 @@ public class Intro_ButtonManager : MonoBehaviour
 
         StartCoroutine(FadeOutImage());
 
-        Continue.onClick.AddListener(() => FadeNextScene());
+        Menu.onClick.AddListener(() => LoadMenuScene());
     }
 
-    private void FadeNextScene()
+    private void LoadMenuScene()
     {
-        MenuClick.Play();
+        GlobalAudio.Play();
         StartCoroutine(FadeInImage());
     }
 
-    private IEnumerator FadeOutImage()
-    {
-
-        float t = 0f;
-        while (t < fadeDuration)
-
-        {
-
-            t += Time.deltaTime;
-            CG.alpha = 1 - Mathf.Clamp01(t / fadeDuration);
-            yield return null;
-
-        }
-
-        CG.alpha = 0f;
-
-    }
-
+    //Fades in image and loads main menu
     private IEnumerator FadeInImage()
     {
 
@@ -63,7 +46,26 @@ public class Intro_ButtonManager : MonoBehaviour
         }
 
         CG.alpha = 1f;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("MainMenu");
+
+    }
+
+    //Fades image to full transparency
+    private IEnumerator FadeOutImage()
+    {
+
+        float t = 0f;
+        while (t < fadeDuration)
+
+        {
+
+            t += Time.deltaTime;
+            CG.alpha = 1 - Mathf.Clamp01(t / fadeDuration);
+            yield return null;
+
+        }
+
+        CG.alpha = 0f;
 
     }
 }

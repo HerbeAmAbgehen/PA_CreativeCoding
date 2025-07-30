@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class GameScene_ButtonManager : MonoBehaviour
 {
+    //Controls what each Button on UI does
+
     public Button Resume;
     public Button Tutorial;
     public Button Quit;
@@ -49,14 +51,11 @@ public class GameScene_ButtonManager : MonoBehaviour
         OM = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
         Return = GameObject.Find("ButtonReturn").GetComponent<Button>();
 
+        //Prevents player from moving camera on load
         DefaultCameraSpeed = CTC.CameraSpeed;
-
         CTC.CameraSpeed = 0;
 
-
-        StartCoroutine(FadeOutImage());
-        
-        
+        StartCoroutine(FadeOutImage());   
 
         Resume.onClick.AddListener(() => TogglePauseMenu());
         Continue.onClick.AddListener(() => ToggleTutorialButton());
@@ -74,6 +73,7 @@ public class GameScene_ButtonManager : MonoBehaviour
         Cursor.visible = false;
     }
 
+    //Checks if player opens or closes pause menu
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -82,6 +82,7 @@ public class GameScene_ButtonManager : MonoBehaviour
         }
     }
 
+    //Uses a toggled bool to enable/disable pause menu
     private void TogglePauseMenu()
     {
         TogglePM = !TogglePM;
@@ -112,6 +113,7 @@ public class GameScene_ButtonManager : MonoBehaviour
         TutorialMenu.SetActive(true);
     }
 
+    //If player sees tutorial for first time (First scene load), continues game on button press, else returns to pause menu
     private void ToggleTutorialButton()
     {
         if (FirstTimeTutorial)
@@ -189,6 +191,7 @@ public class GameScene_ButtonManager : MonoBehaviour
         OM.enabled = false;
     }
 
+    //Called on start, fades out image and shows tutorial
     private IEnumerator FadeOutImage()
     {
 
@@ -211,6 +214,7 @@ public class GameScene_ButtonManager : MonoBehaviour
         Cursor.visible = true;
     }
 
+    //Fades in image and loads target scene
     private IEnumerator FadeInImage(string SceneName)
     {
 

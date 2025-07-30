@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    //Controls Behaviour of Enemies and Interaction with Player
 
     public float movementSpeed;
-
     public float turnStrength;
 
     public AudioSource GlobalAudio;
-
     public AudioClip Damage;
+
 
     private Vector3 startPosition;
     private Vector3 startRotation;
 
     private GameObject player;
-
     private PlayerController playerController;
 
     private int behaviourState;
@@ -26,13 +25,12 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
+
         //Saves Start Position
         startPosition = transform.position;
         startRotation = transform.localEulerAngles; ;
-
-        player = GameObject.Find("Player");
-
-        playerController = player.GetComponent<PlayerController>();
 
         //Sets Behaviour state to Patrol
         behaviourState = 2;

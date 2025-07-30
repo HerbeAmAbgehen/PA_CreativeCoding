@@ -5,6 +5,7 @@ using System.Collections;
 
 public class MainMenu_ButtonManager : MonoBehaviour
 {
+    //Controls what each Button on UI does
 
     public Button Play;
     public Button Options;
@@ -62,6 +63,7 @@ public class MainMenu_ButtonManager : MonoBehaviour
         Application.Quit();
     }
 
+    //Fades Image to full opacity before changing scene
     private IEnumerator FadeInImage()
     {
 
@@ -81,6 +83,7 @@ public class MainMenu_ButtonManager : MonoBehaviour
 
     }
 
+    //Fades image to full transparency
     private IEnumerator FadeOutImage()
     {
 

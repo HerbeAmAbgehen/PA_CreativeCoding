@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class WindTrap : MonoBehaviour
 {
-    public GameObject WindStart;
+    //Generates ForceField within Trigger to push player in Direction between two points (Written before figured out AddRelativeForce :| )
 
+    public GameObject WindStart;
     public GameObject WindEnd;
 
-    private Rigidbody PlayerRB;
+    public float WindStrength;
+
 
     private GameObject Player;
-
-    public float WindStrength;
+    private Rigidbody PlayerRB;
 
     private Vector3 WindDirection;
     

@@ -1,20 +1,19 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-public class End_ButtonManager : MonoBehaviour
+using UnityEngine.SceneManagement;
+using System.Collections;
+public class Intro_ButtonManager : MonoBehaviour
 {
+    //Controls what each Button on UI does
 
-    public Button Menu;
-
+    public Button Continue;
     public GameObject BlackImage;
+    public AudioSource MenuClick;
 
     public float fadeDuration;
 
-    public AudioSource GlobalAudio;
-
     private CanvasGroup CG;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,34 +21,16 @@ public class End_ButtonManager : MonoBehaviour
 
         StartCoroutine(FadeOutImage());
 
-        Menu.onClick.AddListener(() => LoadMenuScene());
+        Continue.onClick.AddListener(() => FadeNextScene());
     }
 
-    private void LoadMenuScene()
+    private void FadeNextScene()
     {
-        GlobalAudio.Play();
+        MenuClick.Play();
         StartCoroutine(FadeInImage());
     }
 
-    private IEnumerator FadeInImage()
-    {
-
-        float t = 0f;
-        while (t < fadeDuration)
-
-        {
-
-            t += Time.deltaTime;
-            CG.alpha = Mathf.Clamp01(t / fadeDuration);
-            yield return null;
-
-        }
-
-        CG.alpha = 1f;
-        SceneManager.LoadScene("MainMenu");
-
-    }
-
+    //Fades image to full transparency
     private IEnumerator FadeOutImage()
     {
 
@@ -65,6 +46,26 @@ public class End_ButtonManager : MonoBehaviour
         }
 
         CG.alpha = 0f;
+
+    }
+
+    //Fades Image to full opacity before changing scene
+    private IEnumerator FadeInImage()
+    {
+
+        float t = 0f;
+        while (t < fadeDuration)
+
+        {
+
+            t += Time.deltaTime;
+            CG.alpha = Mathf.Clamp01(t / fadeDuration);
+            yield return null;
+
+        }
+
+        CG.alpha = 1f;
+        SceneManager.LoadScene("GameScene");
 
     }
 }
